@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pizza Order Form</title>
+  <style>
+    h2 {
+      text-align: center;
+      font-weight: bold;
+    }
+    form {
+      width: 900px;
+      margin: auto;
+      background-color: rgb(245, 244, 244);
+      padding: 10px;
+    }
+    fieldset {
+      margin-bottom: 15px;
+      padding: 10px;
+    }
+    legend {
+      font-weight: bold;
+    }
+    label {
+      display: inline-block;
+      width: 120px;
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+      /* width: 200px; */
+      height: 10px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+   
+  </style>
+</head>
+<body>
+  <form>
+    <fieldset>
+        <legend style="text-align: center;">PIZZA ORDER FORM</legend>
+    <fieldset>
+      <legend>Delivery Address</legend>
+      <label>Full Name:</label><input type="text" name="fullname" placeholder="Full Name">
+      <label>Street Address:</label><input type="text" name="address" placeholder="Address"><br><br>
+      <label>Phone:</label><input type="text" name="phone" placeholder="Phone">
+      <label>Email:</label><input type="email" name="email" placeholder="Email"><br><br>
+      <label>Password:</label><input type="password" name="password" placeholder="Password">
+    </fieldset>
+
+    <fieldset>
+      <legend>Payment Information</legend>
+      <label>Card Type:</label>
+      <select name="cardtype">
+        <option value="visa">Visa</option>
+        <option value="mastercard">MasterCard</option>
+        <option value="discover">Discover</option>
+      </select>
+      <label>Card Number:</label><input type="text" name="cardnumber" placeholder="Card Number"><br>
+      <label>Name on Card:</label><input type="text" name="cardname" placeholder="Name">
+    </fieldset>
+
+    <fieldset>
+      <legend>Customize Your Pizza</legend>
+      <label>Pizza size:</label>
+      <select name="size">
+        <option value="large" selected>large</option>
+        <option value="medium">medium</option>
+        <option value="small">small</option>
+      </select>
+      <label>Quantity:</label><input type="number" name="quantity"><br>
+
+      <label>Spices:</label>
+        <input type="checkbox" name="spices" value="black pepper"> Black pepper
+        <input type="checkbox" name="spices" value="bell peppers"> Bell peppers
+        <input type="checkbox" name="spices" value="mayonnaise"> Mayonnaise <br>
+      <br>
+
+      <label>Other Requirements:</label>
+      <textarea>Any Other Requirements</textarea>
+
+      <label>Meat</label>
+        Fish <input type="radio" name="meat" value="fish">
+       Cow <input type="radio" name="meat" value="cow">
+       Chicken <input type="radio" name="meat" value="chicken">
+    </fieldset>
+
+    <input type="reset" value="Clear Order">
+    <input type="submit" value="Place Order">
+</fieldset>
+  </form>
+
+  <script>
+
+    
+  document.querySelector("form").onsubmit = function(e) {
+  // Zuia form isitume kama kuna makosa
+  e.preventDefault();
+
+  // Chukua thamani za input
+  let fullname = document.getElementsByName("fullname")[0].value.trim();
+  let address = document.getElementsByName("address")[0].value.trim();
+  let phone = document.getElementsByName("phone")[0].value.trim();
+  let email = document.getElementsByName("email")[0].value.trim();
+  let password = document.getElementsByName("password")[0].value.trim();
+  let cardtype = document.getElementsByName("cardtype")[0].value;
+  let cardnumber = document.getElementsByName("cardnumber")[0].value.trim();
+  let cardname = document.getElementsByName("cardname")[0].value.trim();
+  let size = document.getElementsByName("size")[0].value;
+  let quantity = document.getElementsByName("quantity")[0].value.trim();
+
+  // 1. Full name
+  if (fullname === "") {
+    alert("Please enter your full name.");
+    return false;
+  }
+
+  // 2. Address
+  if (address === "") {
+    alert("Please enter your address.");
+    return false;
+  }
+
+  // 3. Phone (10 digits)
+  if (!/^\d{10}$/.test(phone)) {
+    alert("Phone number must be 10 digits.");
+    return false;
+  }
+
+  // 4. Email
+  if (email === "") {
+    alert("Please enter your email.");
+    return false;
+  }
+
+  // 5. Password (5-15 characters)
+  if (password.length < 5 || password.length > 15) {
+    alert("Password must be between 5 and 15 characters.");
+    return false;
+  }
+
+  // 6. Card type
+  if (cardtype === "") {
+    alert("Please select card type.");
+    return false;
+  }
+
+  // 7. Card number
+  if (cardnumber === "") {
+    alert("Please enter card number.");
+    return false;
+  }
+
+  // 8. Card name
+  if (cardname === "") {
+    alert("Please enter name on card.");
+    return false;
+  }
+
+  // 9. At least one spice checked
+  let spices = document.getElementsByName("spices");
+  let spiceChecked = false;
+  for (let i = 0; i < spices.length; i++) {
+    if (spices[i].checked) {
+      spiceChecked = true;
+      break;
+    }
+  }
+  if (!spiceChecked) {
+    alert("Please select at least one spice.");
+    return false;
+  }
+
+  // 10. Pizza size - dropdown so always selected, skip this
+
+  // 11. Quantity
+  if (quantity === "" || quantity <= 0) {
+    alert("Please enter a valid quantity.");
+    return false;
+  }
+
+  // 12. Meat radio selected
+  let meats = document.getElementsByName("meat");
+  let meatSelected = false;
+  for (let i = 0; i < meats.length; i++) {
+    if (meats[i].checked) {
+      meatSelected = true;
+      break;
+    }
+  }
+  if (!meatSelected) {
+    alert("Please select one meat option.");
+    return false;
+  }
+
+  // Kama yote yapo sawa:
+  alert("Form submitted successfully!");
+  e.target.submit(); // Tuma form sasa
+}
+</script>
+
+  
+</body>
+</html>
