@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section {
+        border: 1px solid gray;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f2f2f2;
+       }
+       .button:hover{
+        background-color: black;
+
+       }
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <h2>Input Section</h2>
+
+     <p>Enter a number in each of the table below
+       and then click one of the button below to either
+       sort a number into an ascending order or descending order.
+       The sorted number will be placed in the output section.
+     </p>
+
+     <div style="display: flex; justify-content: center; gap: 30px;">
+  <div style="text-align: center;">
+    <label>A</label><br>
+    <input type="number" id="num1">
+  </div>
+  <div style="text-align: center;">
+    <label>B</label><br>
+    <input type="number" id="num2">
+  </div>
+  <div style="text-align: center;">
+    <label>C</label><br>
+    <input type="number" id="num3">
+  </div>
+  </div>
+
+     <input type="button" onclick="ascending()" value="sort in ascending order" style="margin: 2%;">
+     <input type="button" onclick="descending()" value="sort in ascending order">
+    
+    
+    
+        <h2>Output Section</h2>
+
+        <p>Once you click on one of the button,
+           the numbers in boxes A,B,and C will be sorted accordingly.
+           The sorted numbers will ten be placed in hese boxes.
+        </p>
+        <input type="text" id="out1">
+        <input type="text" id="out2">
+        <input type="text" id="out3">
+
+    </div>
+
+    <script>
+
+        
+    function ascending() {
+    // Chukua namba kutoka kwa input boxes
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    let c = parseFloat(document.getElementById("num3").value);
+
+    // Hifadhi kwenye array
+    let numbers = [a, b, c];
+
+    // Panga kwa mpangilio wa kupanda (ascending)
+    numbers.sort(function(x, y) {
+      return x - y;
+    });
+
+    // Weka majibu kwenye output boxes
+    document.getElementById("out1").value = numbers[0];
+    document.getElementById("out2").value = numbers[1];
+    document.getElementById("out3").value = numbers[2];
+    }
+
+  function descending() {
+    // Chukua namba kutoka kwa input boxes
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    let c = parseFloat(document.getElementById("num3").value);
+
+    // Hifadhi kwenye array
+    let numbers = [a, b, c];
+
+    // Panga kwa mpangilio wa kushuka (descending)
+    numbers.sort(function(x, y) {
+      return y - x;
+    });
+
+    // Weka majibu kwenye output boxes
+    document.getElementById("out1").value = numbers[0];
+    document.getElementById("out2").value = numbers[1];
+    document.getElementById("out3").value = numbers[2];
+    }
+
+    </script>
+</body>
+</html>
