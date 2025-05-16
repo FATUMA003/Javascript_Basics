@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Message</title>
+    <script>
+        function User() {
+            let user = document.getElementById("name").value;
+            document.getElementById("welcome").innerHTML = "Welcome " + user;
+        } 
+    </script>
+</head>
+<body>
+    <label><b>What is your name?:</b></label><br><br>
+    <input type="text" id="name">
+    <input type="submit" value="Submit" onclick="User()"><br><br>
+
+    <div id="welcome"></div>
+</body>
+</html>
